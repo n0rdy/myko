@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Myko Nordy</title>
+    <meta name="description"
+          content="Indie developer who loves tech, books, and mountains. Building things for fun and profit.">
+    <link rel="canonical" href="https://myko.n0rdy.foo/">
+    <link rel="icon" href="assets/img/avatar.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/img/avatar-180.png">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Myko Nordy">
+    <meta property="og:title" content="Myko Nordy">
+    <meta property="og:description"
+          content="Indie developer who loves tech, books, and mountains. Building things for fun and profit.">
+    <meta property="og:url" content="https://myko.n0rdy.foo/">
+    <meta property="og:image" content="https://myko.n0rdy.foo/assets/img/avatar-450.png">
+    <meta property="og:image:width" content="450">
+    <meta property="og:image:height" content="450">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Myko Nordy">
+    <meta name="twitter:description"
+          content="Indie developer who loves tech, books, and mountains. Building things for fun and profit.">
+    <meta name="twitter:image" content="https://myko.n0rdy.foo/assets/img/avatar-450.png">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Myko Nordy",
+            "url": "https://myko.n0rdy.foo/",
+            "image": "https://myko.n0rdy.foo/assets/img/avatar-450.png",
+            "jobTitle": "Indie developer",
+            "email": "mailto:myko.nordy@pm.me",
+            "sameAs": [
+                "https://n0rdy.foo",
+                "https://x.com/_n0rdy_",
+                "https://bsky.app/profile/n0rdy.foo",
+                "https://github.com/n0rdy"
+            ]
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: "Caveat";
+            font-style: normal;
+            font-weight: 400 700;
+            font-display: swap;
+            src: url(assets/fonts/caveat-latin-wght-normal.woff2) format("woff2")
+        }
+
+        @font-face {
+            font-family: "Bricolage Grotesque";
+            font-style: normal;
+            font-weight: 200 800;
+            font-display: swap;
+            src: url(assets/fonts/bricolage-grotesque-latin-wght-normal.woff2) format("woff2")
+        }
+
+        :root {
+            color-scheme: light dark;
+            --bg: #0c0c0e;
+            --fg: #f4f4f2;
+            --muted: #9a9aa3;
+            --line: rgba(255, 255, 255, .1);
+            --row: #151518;
+            --g: #62ef56;
+            --ink: #0b0b0b;
+            --grey: #2a2a2f
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f6f6f3;
+                --fg: #0c0c0e;
+                --muted: #5f5f66;
+                --line: rgba(0, 0, 0, .08);
+                --row: #fff
+            }
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: "Bricolage Grotesque", system-ui, sans-serif;
+            padding: 3rem 1.25rem;
+            -webkit-font-smoothing: antialiased
+        }
+
+        main {
+            max-width: 26rem;
+            margin: 0 auto
+        }
+
+        .who {
+            position: relative;
+            width: 148px;
+            margin: 0 auto;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .avatar {
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            display: block;
+            box-shadow: 0 0 0 6px var(--bg), 0 0 0 9px var(--g)
+        }
+
+        .bubble {
+            position: absolute;
+            left: 118px;
+            top: -22px;
+            background: #fff;
+            color: #0b0b0b;
+            border: 3px solid var(--grey);
+            border-radius: 18px;
+            padding: .45rem .8rem;
+            font-weight: 700;
+            font-size: 1rem;
+            white-space: nowrap;
+            transform: scale(0);
+            transform-origin: 0 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), opacity .15s
+        }
+
+        .bubble .tail {
+            position: absolute;
+            left: 8px;
+            bottom: -20px;
+            width: 22px;
+            height: 23px;
+            overflow: visible
+        }
+
+        .bubble .tail polygon {
+            fill: #fff
+        }
+
+        .bubble .tail polyline {
+            fill: none;
+            stroke: var(--grey);
+            stroke-width: 3;
+            stroke-linejoin: round;
+            stroke-linecap: round
+        }
+
+        .who.on .bubble {
+            transform: scale(1);
+            opacity: 1
+        }
+
+        @media (hover: hover) {
+            .who:hover .bubble {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            @keyframes wiggle {
+                0%, 100% {
+                    transform: rotate(0)
+                }
+                25% {
+                    transform: rotate(-4deg)
+                }
+                75% {
+                    transform: rotate(4deg)
+                }
+            }
+            @media (hover: hover) {
+                .who:hover .avatar {
+                    animation: wiggle .5s ease-in-out
+                }
+            }
+            .avatar.wig {
+                animation: wiggle .5s ease-in-out
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .bubble {
+                transition: opacity .15s
+            }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            margin: 1.25rem 0 .5rem;
+            text-align: center
+        }
+
+        p.where {
+            color: var(--muted);
+            text-align: center;
+            margin: -.25rem 0 .75rem;
+            font-size: .95rem;
+            font-weight: 600;
+            letter-spacing: .02em
+        }
+
+        p.bio {
+            color: var(--fg);
+            text-align: center;
+            line-height: 1.5;
+            margin: 0 0 1.25rem;
+            font-size: 1.05rem
+        }
+
+        .foot {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line)
+        }
+
+        .foot h2 {
+            margin-top: 0
+        }
+
+        .quote {
+            margin: 0;
+            padding: .1rem 0 .1rem 1rem;
+            border-left: 3px solid var(--g);
+            text-align: left
+        }
+
+        .quote p {
+            color: var(--muted);
+            font-family: "Caveat", cursive;
+            font-style: normal;
+            font-size: 1.35rem;
+            line-height: 1.35;
+            font-weight: 500;
+            margin: 0 0 .35rem
+        }
+
+        .quote cite {
+            display: block;
+            font-style: normal;
+            font-size: .8rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: .8
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            list-style: none
+        }
+
+        .pill {
+            display: inline-block;
+            background: var(--g);
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 700;
+            padding: .7rem 1.15rem;
+            border-radius: 999px;
+            font-size: 1.05rem;
+            border: 2px solid var(--g);
+            transition: background .15s, color .15s, border-color .15s
+        }
+
+        .pill:hover, .pill:focus-visible {
+            background: var(--grey);
+            color: var(--g);
+            border-color: var(--grey);
+            outline: none
+        }
+
+        h2 {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-weight: 600;
+            color: var(--muted);
+            margin: 2.25rem 0 .75rem
+        }
+
+        .rows {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem
+        }
+
+        .prod {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            background: var(--row);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: .75rem .9rem;
+            text-decoration: none;
+            color: var(--fg);
+            transition: border-color .15s
+        }
+
+        .prod:hover, .prod:focus-visible {
+            border-color: var(--g);
+            outline: none
+        }
+
+        .prod img {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            object-fit: cover;
+            flex: none
+        }
+
+        .prod span {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25
+        }
+
+        .prod em {
+            font-style: normal;
+            color: var(--muted);
+            font-size: .9rem
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="who" id="who">
+        <img class="avatar" id="avatar" src="assets/img/avatar.svg" alt="Myko Nordy" width="148" height="148">
+        <div class="bubble" aria-hidden="true">Hello there =)
+            <svg class="tail" viewBox="0 -3 22 23" aria-hidden="true">
+                <polygon points="0,-3 18,-3 18,0 0,20"/>
+                <polyline points="0,-1 0,20 18,0"/>
+            </svg>
+        </div>
+    </div>
+    <h1>Myko Nordy</h1>
+    <p class="where">Norway 🇳🇴</p>
+    <p class="bio">Indie developer who loves tech, books, and mountains. Building things for fun and profit.</p>
+    <nav aria-label="Where to find me">
+        <ul class="pills">
+            <li><a class="pill" href="https://n0rdy.foo">Blog</a></li>
+            <li><a class="pill" href="https://x.com/_n0rdy_">X</a></li>
+            <li><a class="pill" href="https://bsky.app/profile/n0rdy.foo">Bluesky</a></li>
+            <li><a class="pill" href="https://github.com/n0rdy">GitHub</a></li>
+            <li><a class="pill" href="mailto:myko.nordy@pm.me">Email</a></li>
+        </ul>
+    </nav>
+    <h2>Things I build</h2>
+    <div class="rows">
+        <a class="prod" href="https://retrek.me"><img src="assets/img/retrek.webp" alt="" width="36"
+                                                      height="36"><span><b>reTrek</b> <em>walking app</em></span></a>
+        <a class="prod" href="https://tenbreaths.app"><img src="assets/img/tenbreaths-icon.png" alt="" width="36"
+                                                           height="36"><span><b>Ten Breaths</b> <em>breathing guide for Mac</em></span></a>
+    </div>
+    <h2>Open source</h2>
+    <div class="rows">
+        <a class="prod" href="https://pooml.com"><img src="assets/img/pooml-logo.png" alt="" width="36"
+                                                      height="36"><span><b>pooml</b> <em>logs and metrics in SQLite</em></span></a>
+        <a class="prod" href="https://forq.sh"><img src="assets/img/forq.png" alt="" width="36" height="36"><span><b>Forq</b> <em>message queue on SQLite</em></span></a>
+    </div>
+    <footer class="foot">
+        <h2>My favourite quote instead of a footer</h2>
+        <blockquote class="quote">
+            <p>…then something Tookish woke up inside him, and he wished to go and see the great mountains, and hear the
+                pine-trees and the waterfalls, and explore the caves, and wear a sword instead of a walking-stick…</p>
+            <cite>J. R. R. Tolkien, The Hobbit</cite>
+        </blockquote>
+    </footer>
+</main>
+<script>
+  (function () {
+    var who = document.getElementById('who'), avatar = document.getElementById('avatar')
+    // Tap toggles the bubble and runs the wiggle once; hover does the same on pointer devices via CSS.
+    who.addEventListener('click', function (e) {
+      e.stopPropagation()
+      who.classList.toggle('on')
+      avatar.classList.remove('wig')
+      void avatar.offsetWidth
+      avatar.classList.add('wig')
+    })
+    avatar.addEventListener('animationend', function () { avatar.classList.remove('wig') })
+    document.addEventListener('click', function () { who.classList.remove('on') })
+  })()
+</script>
+</body>
+</html>
